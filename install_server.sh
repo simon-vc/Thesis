@@ -8,4 +8,4 @@ echo "Installing Server"
 bash install_server.sh
 
 echo "Copying content"
-cp bbb_2/ /var/www/html/live_content/
+cp -r bbb_2/ /var/www/html/live_content/
