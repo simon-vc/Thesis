@@ -1,9 +1,10 @@
 echo "Install ruby"
 
 sudo apt-get update
-sudo apt-get -y install software-properties-common
-sudo apt-add-repository -y ppa:brightbox/ruby-ng
-sudo apt-get update
-
-sudo apt-get -y install build-essential libssl-dev
-sudo apt-get -y install ruby2.2 ruby2.2-dev
+cd
+wget http://ftp.ruby-lang.org/pub/ruby/2.2/ruby-2.2.3.tar.gz
+tar -xzvf ruby-2.2.3.tar.gz
+cd ruby-2.2.3/
+./configure
+make
+sudo make install
