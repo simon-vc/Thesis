@@ -1,8 +1,8 @@
 #Default values
 #Amount of containers
 N=10
-#Image name for the docker container
-IMAGE="simonvancauter/vfclient"
+#Random sleep time between container starts
+SLEEPTIME=10
 
 #Read arguments
 while [[ $# > 1 ]]
@@ -20,8 +20,15 @@ case $key in
 	fi
     shift
     ;;
-    -i|--image)
-    IMAGE="$2"
+    -s|--sleep)
+    SLEEPTIME="$2"
+		if [[ $SLEEPTIME -ge 0 ]]
+		then
+			echo "Random sleeptime set between 1 and $SLEEPTIME"
+		else
+			echo "Sleeptime must be positive"
+			SLEEPTIME=10
+		fi
     shift
     ;;
     *)
@@ -33,16 +40,23 @@ shift
 done
 
 
-echo "Creating Docker containers"
+echo "Starting Docker containers"
 echo "Amount: $N"
 echo "===================================="
 
 SECONDS=0
 for ((i=1 ; i<=$N ; i++))
 do
-        echo "Creating container$i"
-        docker create -v /etc/localtime:/etc/localtime:ro --name client$i $IMAGE /bin/bash -c "cd client/ ; export LD_LIBRARY_PATH=bin:/usr/lib ; ./client client_confi$
-
+        echo "Starting container$i"
+        docker start client$i
+        if [[ $i -ne $N ]]
+                then
+                        if [[ $SLEEPTIME -gt 0 ]]
+                        then
+                                echo "Sleep"
+                                sleep $(( ( $RANDOM % $SLEEPTIME )  + 1 ))s
+                        fi
+        fi
 done
 echo "===================================="
-echo "Creating containers: $SECONDS elapsed"
+echo "$SECONDS elapsed"
