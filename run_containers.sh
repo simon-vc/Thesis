@@ -51,11 +51,11 @@ echo "Amount: $N"
 echo "===================================="
 
 SECONDS=0
-for ((i=1 ; it<=$N ; it++))
+for ((i=1 ; $i<=$N ; $i++))
 do
 	echo "Starting container$i"
 	docker run -d -v /etc/localtime:/etc/localtime:ro --name client$i $IMAGE /bin/bash -c "cd client/ ; export LD_LIBRARY_PATH=bin:/usr/lib ; ./client client_config_http1.ini"
-	echo "Container $it started"
+	echo "Container $i started"
 	if [[ $i -ne $N ]]
 		then
 			if [[ $SLEEPTIME -gt 0 ]]
