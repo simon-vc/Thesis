@@ -2,7 +2,7 @@ echo "Install ruby"
 
 sudo apt-get update
 sudo apt-get -y install software-properties-common
-sudo apt-add-repository ppa:brightbox/ruby-ng
+sudo apt-add-repository -y ppa:brightbox/ruby-ng
 sudo apt-get update
 
 sudo apt-get -y install build-essential libssl-dev
