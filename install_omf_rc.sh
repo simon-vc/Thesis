@@ -1,2 +1,2 @@
-sudo gem install omf_rc --no-ri --no-rdoc
-sudo install_omf_rc -i -c
+gem install omf_rc --no-ri --no-rdoc
+install_omf_rc -i -c
