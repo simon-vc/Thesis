@@ -8,6 +8,7 @@ cd ruby-2.2.3/
 make
 sudo make install
 
+cd
 echo "Install omf_rc"
 sudo gem install omf_rc --no-ri --no-rdoc
 sudo install_omf_rc -i -c
