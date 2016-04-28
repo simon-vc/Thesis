@@ -12,7 +12,7 @@ echo "Installing omf_ec"
 sudo gem install omf_ec --no-ri --no-rdoc
 
 echo "Downloading omf script"
-#wget 
+wget https://raw.githubusercontent.com/simon-vc/Thesis/master/vforce.rb 
 
 echo "To run omf script using default values:"
 echo "omf_ec -u amqp://labwiki.test.atlantis.ugent.be vforce.rb"
