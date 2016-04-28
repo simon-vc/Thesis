@@ -34,14 +34,14 @@ end
 
 defGroup("client_run","client1.largeset.wall2-ilabt-iminds-be.wall1.ilabt.iminds.be") do |node|
   node.addApplication("run_containers") do |app|
-    app.setProperty('script', '/users/simonvc/run_containers.sh')
+    app.setProperty('command', '/users/simonvc/run_containers.sh')
     app.setProperty('amount', '1')
   end
 end
 
 defGroup("client_collect","client1.largeset.wall2-ilabt-iminds-be.wall1.ilabt.iminds.be") do |node|
   node.addApplication("collect_logs") do |app|
-    app.setProperty('script', '/users/simonvc/collect_logs.sh')
+    app.setProperty('command', '/users/simonvc/collect_logs.sh')
   end
 end
 
