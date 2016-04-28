@@ -21,7 +21,7 @@ Script for all resources. Installs ruby and omf_rc with the right configurations
 ##install_server.sh
 Unzip code and installs server
 
-#prep_client.sh
+##prep_client.sh
 Installs Docker and gets the needed scripts
 
 ##run_containers.sh
