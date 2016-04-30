@@ -27,19 +27,19 @@ end
 # Create a group by giving it a name and the DNS name of the resource you want to add to that group
 defGroup("server","server.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |servernode|
   servernode.addApplication("start_server") do |serverapp|
-    serverapp.setProperty('script', '\"export HOME=/users/simonvc/ ; cd /users/simonvc/code_thesis_simon/Server/ ; bash run_server.sh\"')
+    serverapp.setProperty('script', 'export HOME=/users/simonvc/ ; cd /users/simonvc/code_thesis_simon/Server/ ; bash run_server.sh')
   end
 end
 
 defGroup("client_run","client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |runnode|
   runnode.addApplication("run_containers") do |runapp|
-    runapp.setProperty('script', '\"export HOME=/users/simonvc/ ; cd /users/simonvc/ ; bash run_containers.sh -n 1\"')
+    runapp.setProperty('script', 'export HOME=/users/simonvc/ ; cd /users/simonvc/ ; bash run_containers.sh -n 1')
   end
 end
 
 defGroup("client_collect","client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |collectnode|
   collectnode.addApplication("collect_logs") do |collectapp|
-    collectapp.setProperty('script', '\"export HOME=/users/simonvc/ ; cd /users/simonvc/ ; bash collect_logs.sh\"')
+    collectapp.setProperty('script', 'export HOME=/users/simonvc/ ; cd /users/simonvc/ ; bash collect_logs.sh')
   end
 end
 
