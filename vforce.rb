@@ -5,7 +5,7 @@
 defApplication('start_server') do |serverapp|
    serverapp.binary_path = "/bin/bash"
    serverapp.description = "Starting the server"
-   serverapp.defProperty('script', 'Script to run the server','', {:type => :string})
+   serverapp.defProperty('script', 'Script to run the server','-c', {:type => :string})
 end
 
 defApplication('run_containers') do |runapp|
@@ -28,7 +28,7 @@ end
 # Create a group by giving it a name and the DNS name of the resource you want to add to that group
 defGroup("server","server.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |servernode|
   servernode.addApplication("start_server") do |serverapp|
-    serverapp.setProperty('script', '/users/simonvc/code_thesis_simon/Server/run_server.sh')
+    serverapp.setProperty('script', 'export HOME=/users/simonvc/ ; cd /users/simonvc/code_thesis_simon/Server/ ; bash run_server.sh')
   end
 end
 
