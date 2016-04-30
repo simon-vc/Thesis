@@ -33,11 +33,11 @@ defGroup('servergroup','server.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be
 end
 
 defGroup('clientgroup','client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be') do |clientnode|
-  clientnode.addApplication('runClients', id => 'run') do |runapp|
+  clientnode.addApplication('runClients', {id => 'run'}) do |runapp|
     runapp.setProperty('script', '/users/simonvc/run_containers.sh')
     runapp.setProperty('amount', 1)
   end
-  clientnode.addApplication('collectLogs', id => 'collect') do |collectapp|
+  clientnode.addApplication('collectLogs', {id => 'collect'}) do |collectapp|
     collectapp.setProperty('script', 'export HOME=/users/simonvc/ ; cd /users/simonvc/ ; bash collect_logs.sh')
   end
 end
@@ -49,15 +49,15 @@ onEvent(:ALL_UP) do |event|
   info "Starting experiment..."
   after 10 do
     info "Starting server..."
-    group('server').startApplications
+    group('servergroup').startApplications
   end
   after 40 do
     info "Starting client..."
-    group('client').startApplication('run')
+    group('clientgroup').startApplication('run')
   end
   after 200 do
     info "Collecting logs"
-    group('client').startApplication('collect')
+    group('clientgroup').startApplication('collect')
   end
   after 220 do
     info "All applications are stopped now..."
