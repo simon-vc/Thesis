@@ -18,7 +18,7 @@ end
 defApplication('collect_logs') do |collectapp|
    collectapp.binary_path = "/bin/bash"
    collectapp.description = "Collect the logs"
-   collectapp.defProperty('script', 'Script to collect the logs','', {:type => :string})
+   collectapp.defProperty('script', 'Script to collect the logs','-c', {:type => :string})
 end
 
 ###################################################
@@ -41,7 +41,7 @@ end
 
 defGroup("client_collect","client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |collectnode|
   collectnode.addApplication("collect_logs") do |collectapp|
-    collectapp.setProperty('script', '/users/simonvc/collect_logs.sh')
+    collectapp.setProperty('script', 'export HOME=/users/simonvc ; cd /users/simonvc/ ; bash collect_logs.sh')
   end
 end
 
