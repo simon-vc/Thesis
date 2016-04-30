@@ -2,23 +2,23 @@
 ################### APP DEF #######################
 ###################################################
 
-defApplication('start_server') do |app|
-   app.binary_path = "/bin/bash"
-   app.description = "Starting the server"
-   app.defProperty('script', 'Script to run the server','', {:type => :string})
+defApplication('start_server') do |serverapp|
+   serverapp.binary_path = "/bin/bash"
+   serverapp.description = "Starting the server"
+   serverapp.defProperty('script', 'Script to run the server','', {:type => :string})
 end
 
-defApplication('run_containers') do |app|
-   app.binary_path = "/bin/bash"
-   app.description = "Running the containers"
-   app.defProperty('script', 'Script to run containers with arguments','', {:type => :string})
-   app.defProperty('amount', 'Amount of containers','-n', {:type => :integer})
+defApplication('run_containers') do |runapp|
+   runapp.binary_path = "/bin/bash"
+   runapp.description = "Running the containers"
+   runapp.defProperty('script', 'Script to run containers with arguments','', {:type => :string})
+   runapp.defProperty('amount', 'Amount of containers','-n', {:type => :integer})
 end
 
-defApplication('collect_logs') do |app|
-   app.binary_path = "/bin/bash"
-   app.description = "Collect the logs"
-   app.defProperty('script', 'Script to collect the logs','', {:type => :string})
+defApplication('collect_logs') do |collectapp|
+   collectapp.binary_path = "/bin/bash"
+   collectapp.description = "Collect the logs"
+   collectapp.defProperty('script', 'Script to collect the logs','', {:type => :string})
 end
 
 ###################################################
@@ -26,22 +26,22 @@ end
 ###################################################
 
 # Create a group by giving it a name and the DNS name of the resource you want to add to that group
-defGroup("server","server.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |node|
-  node.addApplication("start_server") do |app|
-    app.setProperty('script', '/users/simonvc/code_thesis_simon/Server/run_server.sh')
+defGroup("server","server.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |servernode|
+  servernode.addApplication("start_server") do |serverapp|
+    serverapp.setProperty('script', '/users/simonvc/code_thesis_simon/Server/run_server.sh')
   end
 end
 
-defGroup("client_run","client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |node|
-  node.addApplication("run_containers") do |app|
-    app.setProperty('script', '/users/simonvc/run_containers.sh')
-    app.setProperty('amount', '1')
+defGroup("client_run","client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |runnode|
+  runnode.addApplication("run_containers") do |runapp|
+    runapp.setProperty('script', '/users/simonvc/run_containers.sh')
+    runapp.setProperty('amount', 1)
   end
 end
 
-defGroup("client_collect","client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |node|
-  node.addApplication("collect_logs") do |app|
-    app.setProperty('script', '/users/simonvc/collect_logs.sh')
+defGroup("client_collect","client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |collectnode|
+  collectnode.addApplication("collect_logs") do |collectapp|
+    collectapp.setProperty('script', '/users/simonvc/collect_logs.sh')
   end
 end
 
@@ -50,18 +50,18 @@ end
 onEvent(:ALL_UP) do |event|
   # print some info to the STDOUT of the OMF EC
   info "Starting experiment..."
-  after 5 do
+  after 10 do
     info "Starting server..."
     group("server").startApplications
   end
-  after 15 do
+  after 30 do
     info "Starting client..."
     group("client_run").startApplications
   end
-  after 900 do
+  after 1000 do
     group("client_collect").startApplications
   end
-  after 1000 do
+  after 1200 do
     info "All applications are stopped now..."
     allGroups.stopApplications
     Experiment.done
