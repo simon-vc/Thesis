@@ -21,7 +21,7 @@ end
 
 # Create a group by giving it a name and the DNS name of the resource you want to add to that group
 defGroup('servergroup','server.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be') do |servernode|
-  servernode.addApplication('serverStart') do |server|
+  servernode.addApplication('server') do |server|
     server.setProperty('script', 'export HOME=/users/simonvc/ ; cd /users/simonvc/code_thesis_simon/Server/ ; bash run_server.sh')
   end
 end
