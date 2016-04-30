@@ -2,7 +2,7 @@ echo "Getting logs"
 
 FOUND=false
 ITERATIE=0
-DC=~/logs
+DC=logs
 while [ $FOUND != true ]
 do
 	if [ -d "$DC/log$ITERATIE" ]
@@ -15,12 +15,12 @@ done
 echo "Iteratie $ITERATIE"
 if [ ! -d "$DC" ]
 then
-	mkdir ~/logs/
+	mkdir logs/
 fi
-mkdir ~/logs/log$ITERATIE/
+mkdir logs/log$ITERATIE/
 
 for i in $(docker ps -aq --format {{.Names}})
 do
 	echo $i
-	docker cp $i:/var/www/html/log_client/ ~/logs/log$ITERATIE/$i/
+	docker cp $i:/var/www/html/log_client/ $DC/log$ITERATIE/$i/
 done
