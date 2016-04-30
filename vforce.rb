@@ -5,20 +5,20 @@
 defApplication('start_server') do |app|
    app.binary_path = "/bin/bash"
    app.description = "Starting the server"
-   app.defProperty('command', 'Script to run the server','', {:type => :string})
+   app.defProperty('script', 'Script to run the server','', {:type => :string})
 end
 
 defApplication('run_containers') do |app|
    app.binary_path = "/bin/bash"
    app.description = "Running the containers"
-   app.defProperty('command', 'Script to run containers with arguments','', {:type => :string})
+   app.defProperty('script', 'Script to run containers with arguments','', {:type => :string})
    app.defProperty('amount', 'Amount of containers','-n', {:type => :integer})
 end
 
 defApplication('collect_logs') do |app|
    app.binary_path = "/bin/bash"
    app.description = "Collect the logs"
-   app.defProperty('command', 'Script to collect the logs','', {:type => :string})
+   app.defProperty('script', 'Script to collect the logs','', {:type => :string})
 end
 
 ###################################################
@@ -26,22 +26,22 @@ end
 ###################################################
 
 # Create a group by giving it a name and the DNS name of the resource you want to add to that group
-defGroup("server","server.largeset.wall2-ilabt-iminds-be.wall1.ilabt.iminds.be") do |node|
+defGroup("server","server.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |node|
   node.addApplication("start_server") do |app|
-    app.setProperty('command', '/users/simonvc/code_thesis_simon/Server/run_server.sh')
+    app.setProperty('script', '/users/simonvc/code_thesis_simon/Server/run_server.sh')
   end
 end
 
-defGroup("client_run","client1.largeset.wall2-ilabt-iminds-be.wall1.ilabt.iminds.be") do |node|
+defGroup("client_run","client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |node|
   node.addApplication("run_containers") do |app|
-    app.setProperty('command', '/users/simonvc/run_containers.sh')
+    app.setProperty('script', '/users/simonvc/run_containers.sh')
     app.setProperty('amount', '1')
   end
 end
 
-defGroup("client_collect","client1.largeset.wall2-ilabt-iminds-be.wall1.ilabt.iminds.be") do |node|
+defGroup("client_collect","client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be") do |node|
   node.addApplication("collect_logs") do |app|
-    app.setProperty('command', '/users/simonvc/collect_logs.sh')
+    app.setProperty('script', '/users/simonvc/collect_logs.sh')
   end
 end
 
