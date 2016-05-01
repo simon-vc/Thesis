@@ -17,5 +17,11 @@ sudo wget https://raw.githubusercontent.com/simon-vc/Thesis/master/vforce.rb
 sudo wget https://raw.githubusercontent.com/simon-vc/Thesis/master/collect.rb
 sudo wget https://raw.githubusercontent.com/simon-vc/Thesis/master/run_ec.sh
 
+echo "INstalling rabbitmq-server"
+sudo apt-get update
+sudo apt-get -y install rabbitmq-server
+sudo wget https://raw.githubusercontent.com/simon-vc/Thesis/master/rabbitmq.config
+sudo cp rabbitmq.config /etc/rabbitmq/rabbitmq.config
+
 echo "To run omf script using default values:"
 echo "bash run_ec.sh"
