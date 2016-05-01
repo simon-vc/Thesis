@@ -2,10 +2,10 @@
 ################### APP DEF #######################
 ###################################################
 
-defApplication('collect') do |capp|
-   capp.binary_path = '/bin/bash'
-   capp.description = 'Collect the logs'
-   capp.defProperty('script', 'Script to collect the logs','-c', {:type => :string})
+defApplication('collect') do |app|
+   app.binary_path = '/bin/bash'
+   app.description = 'Collect the logs'
+   app.defProperty('script', 'Script to collect the logs','-c', {:type => :string})
 end
 
 ###################################################
@@ -13,9 +13,9 @@ end
 ###################################################
 
 # Create a group by giving it a name and the DNS name of the resource you want to add to that group
-defGroup('clients','client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be') do |clients|
-  clients.addApplication('collect') do |capp|
-    capp.setProperty('script', 'export HOME=/users/simonvc/ ; cd /users/simonvc/ ; bash collect_logs.sh')
+defGroup('clients','client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be') do |node|
+  node.addApplication('collect') do |app|
+    app.setProperty('script', 'export HOME=/users/simonvc/ ; cd /users/simonvc/ ; bash collect_logs.sh')
   end
 end
 
