@@ -4,7 +4,7 @@
 environment: production
 
 communication:
-  url: amqp://labwiki.test.atlantis.ugent.be
+  url: amqp://controller.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be
 
 resources:
 - type: node
