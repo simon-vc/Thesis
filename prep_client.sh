@@ -6,6 +6,9 @@ curl -fsSL https://get.docker.com/ | bash
 echo "Getting create_containers script"
 wget https://raw.githubusercontent.com/simon-vc/Thesis/master/create_containers.sh
 
+echo "Getting client_file"
+wget https://raw.githubusercontent.com/simon-vc/Thesis/master/client_config.ini
+
 echo "Getting run_containers script"
 wget https://raw.githubusercontent.com/simon-vc/Thesis/master/run_containers.sh
 
