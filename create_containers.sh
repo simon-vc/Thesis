@@ -1,6 +1,6 @@
 #Default values
 #Amount of containers
-N=10
+N=1
 #Image name for the docker container
 IMAGE="simonvancauter/vfclient"
 
@@ -15,8 +15,8 @@ case $key in
 	if [[ $2 -lt 1 ]]
 	then
 		echo "Amount of containers must be larger than 0"
-		echo "Using default: 10"
-		N=10
+		echo "Using default: 1"
+		N=1
 	fi
     shift
     ;;
