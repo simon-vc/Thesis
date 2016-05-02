@@ -1,8 +1,8 @@
 #Default values
 #Amount of containers
-N=10
+N=1
 #Random sleep time between container starts
-SLEEPTIME=10
+SLEEPTIME=0
 
 #Read arguments
 while [[ $# > 1 ]]
@@ -15,8 +15,8 @@ case $key in
 	if [[ $2 -lt 1 ]]
 	then
 		echo "Amount of containers must be larger than 0"
-		echo "Using default: 10"
-		N=10
+		echo "Using default: 1"
+		N=1
 	fi
     shift
     ;;
@@ -27,7 +27,7 @@ case $key in
 			echo "Random sleeptime set between 1 and $SLEEPTIME"
 		else
 			echo "Sleeptime must be positive"
-			SLEEPTIME=10
+			SLEEPTIME=0
 		fi
     shift
     ;;
