@@ -41,7 +41,8 @@ SECONDS=0
 for ((i=1 ; i<=$N ; i++))
 do
         echo "Creating container$i"
-        docker create -v /etc/localtime:/etc/localtime:ro --name client$i $IMAGE /bin/bash -c "cd client/ ; export LD_LIBRARY_PATH=bin:/usr/lib ; ./client client_config_http1.ini >/var/www/html/log_client/terminallog.txt"
+        docker create -v /etc/localtime:/etc/localtime:ro --name client$i $IMAGE /bin/bash -c "cd client/ ; export LD_LIBRARY_PATH=bin:/usr/lib ; ./client client_config.ini >/var/www/html/log_client/terminallog.txt"
+	docker cp ./client_config.ini client$i:client/
 done
 echo "===================================="
 echo "Creating containers: $SECONDS elapsed"
