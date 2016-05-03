@@ -14,3 +14,6 @@ wget https://raw.githubusercontent.com/simon-vc/Thesis/master/run_containers.sh
 
 echo "Getting collect_logs script"
 wget https://raw.githubusercontent.com/simon-vc/Thesis/master/collect_logs.sh
+
+echo "Getting cpu, mem and disk logging script"
+wget https://raw.githubusercontent.com/simon-vc/Thesis/master/run_logging.sh
