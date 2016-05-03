@@ -11,7 +11,7 @@ end
 defApplication('run_clients') do |app|
    app.binary_path = '/bin/bash'
    app.description = 'Running the containers'
-   app.defProperty('script', 'Script to run containers with arguments','', {:type => :string})
+   app.defProperty('script', 'Script to run containers with arguments','-c', {:type => :string})
    app.defProperty('amount', 'Amount of containers', '-n', {:type => :integer})
 end
 
