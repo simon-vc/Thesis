@@ -17,8 +17,19 @@ if [ ! -d "$DC" ]
 then
 	mkdir logs/
 fi
+
 mkdir logs/log$ITERATIE/
 
+echo "Collect cpu, mem and disk logs"
+sudo cp cpu.log logs/log$ITERATIE/
+sudo rm cpu.log
+sudo cp mem.log logs/log$ITERATIE/
+sudo rm mem.log
+sudo cp disk.log logs/log$ITERATIE/
+sudo rm disk.log
+
+
+echo "Collect container logs"
 for i in $(docker ps -aq --format {{.Names}})
 do
 	echo $i
