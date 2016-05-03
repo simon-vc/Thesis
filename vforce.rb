@@ -28,7 +28,7 @@ end
 
 defGroup('clients','client1.full2.wall2-ilabt-iminds-be.wall2.ilabt.iminds.be') do |node|
   node.addApplication('run_clients') do |app|
-    app.setProperty('script', '/users/simonvc/run_containers.sh')
+    app.setProperty('script', 'export HOME=/users/simonvc/ ; cd /users/simonvc/ ; bash run_containers.sh')
     app.setProperty('amount', 1)
   end
 end
