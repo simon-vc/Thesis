@@ -39,6 +39,12 @@ esac
 shift
 done
 
+echo "Start logging cpu, mem and disk usage"
+echo "===================================="
+sudo nohup sar 10 72 >cpu.log &
+sudo nohup sar -r 10 72 >mem.log &
+sudo nohup sar -F 10 72 >disk.log &
+
 
 echo "Starting Docker containers"
 echo "Amount: $N"
