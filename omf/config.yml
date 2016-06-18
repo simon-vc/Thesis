@@ -1,4 +1,3 @@
----
 # default topic name is this machine's hostname
 # this is to ensure that every RC has its own topic and AMQP account
 environment: production
