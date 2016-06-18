@@ -1,11 +1,10 @@
-echo "Install Server"
+echo "Server installation"
 
-echo "Unzippping"
-unzip code_thesis_simon_v1.zip
-cd code_thesis_simon/Server/
+echo "Install Jetty Server"
+bash ./server/install_jettyserver.sh "code_thesis_simon_v1.zip"
 
-echo "Installing Server"
-bash install_server.sh
+echo "Install Ruby"
+bash ./omf/install_ruby.sh
 
-echo "Copying content"
-cp -r bbb_2/ /var/www/html/live_content/
+echo "Install OMF RC"
+bash ./omf/install_omf_rc.sh
