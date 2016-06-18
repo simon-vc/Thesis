@@ -1,8 +1,0 @@
-#Installing server
-echo "Server installation"
-
-echo "Install server"
-bash ./server/install_jettyserver.sh "code_thesis_simon_v1.zip"
-
-echo "Install OMF RC"
-bash ./omf/install_omf_rc.sh
