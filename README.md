@@ -1,31 +1,32 @@
-# Thesis
+# Framework for a large scale test environment on the Virtual Wall
 
-##collect_logs.sh
-Script to collect the logs from the Docker cotainers on a client node
+Clone the entire repository to the desired installation folder.
 
-##config.yml
-OMF configuration script
+Run the server, client, switch and controller installation scripts on the server, client, switch and controller node.
 
-##copy_files.sh
-Personal script to copy the code to the right place
+Before installing:
+- Edit omf/config.yml to point the OMF Resource Controller to the used message server. Doing this after installation will require a restart of the Resource Controller.
 
-##create_containers.sh
-Script to create containers on the client node. -n amount of containers, -i for image name
+##Server
+Before installing the server, the zip-file with the server code should be provided in the directory next to the server installation script.
+The script installs the Jetty Web server, Ruby and the OMF Resource Controller.
 
-##install_omf_ec.sh
-Script for the controller. Installs ruby and omf_ec, gets the omf-script
+##Client
+The client installation scrip installs Docker, sysstat, Ruby and the OMF Resource Controller. In the client directory are the following files provided:
+- client configuration file
+- script to create containers
+- script to start the containers
+- script to gather the log information
 
-##install_omf_rc.sh
-Script for all resources. Installs ruby and omf_rc with the right configurations.
+##Switch
+The switch installation script install bridg-utils and the OMF Resource Controller. It also adds the tc class for limiting the bandwidth. The script 'change_bandwidth' can be used to change the bandwidth.
 
-##install_server.sh
-Unzip code and installs server
+##Controller
+The controller installation script installs rabbitmq, Ruby and the OMF Experiment Controller.
 
-##prep_client.sh
-Installs Docker and gets the needed scripts
-
-##run_containers.sh
-Runs containers. -n amount of containers, -s sleeptime between run. Containers have to be created with create_containers.
-
-##vforce.rb
-OMF script to run an experiment
+##Running an experiment
+In the omf directory, the following files are included:
+- vforce.rb is the main experiment description to execute an experiment. This file needs to be changed in order to work in a setup.
+- collect.rb is used to gather the log files after an experiment has ended.
+- Providing working experiment description, an experiment can be started with the script 'run_ec.sh'
+- 'iterate.sh' can be used to execute multiple iterations.
